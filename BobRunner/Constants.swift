@@ -11,6 +11,8 @@ import SpriteKit
 struct Scene {
     static let raindrop = "Raindrop"
     static let raindropExplosion = "RaindropExplosion"
+    static let hudStandard = "HUD-Standard"
+    static let hudIphoneX = "HUD-IPhoneX"
 }
 
 struct Node {
@@ -24,6 +26,10 @@ struct Node {
         static let umbrellaCountDown = "//lblUmbrellaCountDown"
     }
     
+    struct Button {
+        static let reload = "btnReload";
+    }
+    
     struct Layer {
         static let background = "background-layer"
         static let midground = "mid-layer"
@@ -31,10 +37,17 @@ struct Node {
     }
 }
 
-struct Key {
-    static let actualStage = "actualStage"
-    static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
-    static let movementMultiplier = "movementMultiplier"
+extension UserDefaults {
+    struct Key {
+        static let actualStage = "actualStage"
+        static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
+    }
+}
+
+struct UserData {
+    struct Key {
+        static let movementMultiplier = "movementMultiplier"
+    }
 }
 
 struct GameOverType {

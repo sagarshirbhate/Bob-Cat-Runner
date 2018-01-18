@@ -16,8 +16,12 @@ class GameViewController: UIViewController {
         if let view = self.view as? SKView {
             // Load the SKScene according to actual stage
             if let scene = SKScene(fileNamed: Stage().name) {
-                // Set the scale mode to scale to fit the display
-                scene.scaleMode = .aspectFill
+                // Set the scale mode according to the device
+                if isIphoneX {
+                    scene.scaleMode = .resizeFill
+                } else {
+                    scene.scaleMode = .aspectFill
+                }
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -47,9 +51,17 @@ class GameViewController: UIViewController {
         return true
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
+}
+
+extension GameViewController {
+    var isIphoneX: Bool {
+        let aspectRatio = Double(view.frame.width/view.frame.height)
+        let iphoneXAspectRatio = 2436.0/1125.0
+        return (aspectRatio == iphoneXAspectRatio) ? true : false
     }
     
+    var isIPad: Bool {
+        let aspectRatio = view.frame.width/view.frame.height
+        return aspectRatio < 1.5 ? true : false
+    }
 }
